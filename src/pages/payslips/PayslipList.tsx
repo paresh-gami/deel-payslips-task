@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   IonContent,
   IonHeader,
@@ -12,8 +12,16 @@ import {
 import { mockPayslips } from "../../data/mockPayslips";
 import { Payslip } from "../../types/Payslip";
 import MainContainer from "../../components/MainContainer/MainContainer";
+import "animate.css";
 
 const PayslipList: React.FC = () => {
+  const [payslips, setPayslips] = useState<Payslip[]>([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPayslips(mockPayslips);
+    }, 500); // Simulate fetching data
+  }, []);
   return (
     <IonPage>
       <IonHeader>
@@ -24,17 +32,19 @@ const PayslipList: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
+            <IonTitle size="large">Payslips</IonTitle>
           </IonToolbar>
         </IonHeader>
 
-        <MainContainer>
+        <MainContainer>          
           <IonList>
-            {mockPayslips.map((payslip: Payslip) => (
+            {payslips.map((payslip: Payslip, index) => (
               <IonItem
                 key={payslip.id}
                 routerLink={`/payslip/${payslip.id}`}
                 detail
+                className="animate__animated animate__fadeIn"
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <IonLabel>
                   <h2>ID: {payslip.id}</h2>

@@ -29,4 +29,76 @@ export const mockPayslips: Payslip[] = [
       mimeType: 'application/pdf'
     }
   },
+  {
+    id: generateUniqueId(),
+    fromDate: '2023-08-01',
+    toDate: '2023-08-15',
+    file: {
+      path: 'https://pdfobject.com/pdf/sample.pdf',
+      mimeType: 'application/pdf'
+    }
+  },
+  {
+    id: generateUniqueId(),
+    fromDate: '2023-08-01',
+    toDate: '2023-08-15',
+    file: {
+      path: 'https://pdfobject.com/pdf/sample.pdf',
+      mimeType: 'application/pdf'
+    }
+  },
+  {
+    id: generateUniqueId(),
+    fromDate: '2023-08-01',
+    toDate: '2023-08-15',
+    file: {
+      path: 'https://pdfobject.com/pdf/sample.pdf',
+      mimeType: 'application/pdf'
+    }
+  },
+  {
+    id: generateUniqueId(),
+    fromDate: '2023-08-01',
+    toDate: '2023-08-15',
+    file: {
+      path: 'https://pdfobject.com/pdf/sample.pdf',
+      mimeType: 'application/pdf'
+    }
+  },
+  {
+    id: generateUniqueId(),
+    fromDate: '2023-08-01',
+    toDate: '2023-08-15',
+    file: {
+      path: 'https://pdfobject.com/pdf/sample.pdf',
+      mimeType: 'application/pdf'
+    }
+  },
+  {
+    id: generateUniqueId(),
+    fromDate: '2023-08-01',
+    toDate: '2023-08-15',
+    file: {
+      path: 'https://pdfobject.com/pdf/sample.pdf',
+      mimeType: 'application/pdf'
+    }
+  },
+  {
+    id: generateUniqueId(),
+    fromDate: '2023-08-01',
+    toDate: '2023-08-15',
+    file: {
+      path: 'https://pdfobject.com/pdf/sample.pdf',
+      mimeType: 'application/pdf'
+    }
+  },
+  {
+    id: generateUniqueId(),
+    fromDate: '2023-08-01',
+    toDate: '2023-08-15',
+    file: {
+      path: 'https://pdfobject.com/pdf/sample.pdf',
+      mimeType: 'application/pdf'
+    }
+  },
 ];

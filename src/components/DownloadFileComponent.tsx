@@ -5,6 +5,7 @@ import { CapacitorHttp } from "@capacitor/core";
 import { IonButton, IonIcon } from "@ionic/react";
 import { showToast } from "../utils/toast";
 import { downloadOutline, fileTrayFull, heart } from 'ionicons/icons';
+import MainContainer from "./MainContainer/MainContainer";
 
 interface FileLink {
   path: string;
@@ -73,12 +74,12 @@ const DownloadFileComponent: React.FC<DownloadFileComponentProps> = ({
   };
 
   return (
-    <div>
+    <MainContainer>
       <IonButton expand="full" onClick={downloadFileHandler}>
         <IonIcon icon={fileTrayFull}></IonIcon>&nbsp;
         Download Slip
       </IonButton>
-    </div>
+    </MainContainer>
   );
 };
 
