@@ -8,6 +8,7 @@ import {
   IonLabel,
   IonButtons,
   IonBackButton,
+  IonFooter,
 } from "@ionic/react";
 import { RouteComponentProps } from "react-router-dom";
 import { mockPayslips } from "../../data/mockPayslips";
@@ -30,8 +31,10 @@ const PayslipDetail: React.FC<RouteComponentProps<{ id: string }>> = ({
             <IonTitle>Payslip Not Found</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent>
-          <IonLabel>Payslip with ID {match.params.id} not found.</IonLabel>
+        <IonContent className="ion-padding">
+          <p className="ion-text-center">
+            Payslip with ID {match.params.id} not found.
+          </p>
         </IonContent>
       </IonPage>
     );
@@ -54,11 +57,12 @@ const PayslipDetail: React.FC<RouteComponentProps<{ id: string }>> = ({
             <p>From: {payslip.fromDate}</p>
             <p>To: {payslip.toDate}</p>
             <p>File Name: {payslip.file.path}</p>
-
-            <DownloadFileComponent fileLink={payslip.file} />
           </IonLabel>
         </MainContainer>
       </IonContent>
+      <IonFooter class="ion-padding">
+        <DownloadFileComponent fileLink={payslip.file} />
+      </IonFooter>
     </IonPage>
   );
 };

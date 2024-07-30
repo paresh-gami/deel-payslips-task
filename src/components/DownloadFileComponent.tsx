@@ -2,8 +2,9 @@ import React from "react";
 import { Filesystem, Directory } from "@capacitor/filesystem";
 import { Capacitor, HttpResponse } from "@capacitor/core";
 import { CapacitorHttp } from "@capacitor/core";
-import { IonButton } from "@ionic/react";
+import { IonButton, IonIcon } from "@ionic/react";
 import { showToast } from "../utils/toast";
+import { downloadOutline, fileTrayFull, heart } from 'ionicons/icons';
 
 interface FileLink {
   path: string;
@@ -32,30 +33,30 @@ const downloadFile = async (path: string, mimeType: string) => {
       showToast({ message: `File ${path} downloaded and saved successfully.` });
     } else {
       const options = {
-        method: 'GET',
+        method: "GET",
         url: url,
-        responseType: 'blob' as const,  // Correct usage of 'as const'
+        responseType: "blob" as const,
       };
 
       const response: HttpResponse = await CapacitorHttp.get(options);
 
-      // Ensure response data is treated as a Blob
       const blob = new Blob([response.data], { type: mimeType });
 
-      // Use FileReader to read the Blob as Data URL
       const reader = new FileReader();
       reader.onloadend = async () => {
         const base64data = reader.result as string;
 
         await Filesystem.writeFile({
-          path: `Documents/${path.split('/').pop()}`, // Save the file in Documents directory
+          path: `Documents/${path.split("/").pop()}`,
           data: base64data,
           directory: Directory.Documents,
           recursive: true,
         });
 
         console.log(`File ${path} downloaded and saved successfully.`);
-        showToast({ message: `File ${path} downloaded and saved successfully.` });
+        showToast({
+          message: `File ${path} downloaded and saved successfully.`,
+        });
       };
       reader.readAsDataURL(blob);
     }
@@ -73,7 +74,10 @@ const DownloadFileComponent: React.FC<DownloadFileComponentProps> = ({
 
   return (
     <div>
-      <IonButton onClick={downloadFileHandler}>Download File</IonButton>
+      <IonButton expand="full" onClick={downloadFileHandler}>
+        <IonIcon icon={fileTrayFull}></IonIcon>&nbsp;
+        Download Slip
+      </IonButton>
     </div>
   );
 };
