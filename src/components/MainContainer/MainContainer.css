@@ -1,0 +1,16 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .main-container > * {
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  @media (max-width: 768px) {
+    .main-container > * {
+      max-width: 100%;
+    }
+  }
+  

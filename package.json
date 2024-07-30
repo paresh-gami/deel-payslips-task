@@ -5,7 +5,9 @@
   "dependencies": {
     "@capacitor/android": "^6.1.1",
     "@capacitor/app": "6.0.0",
-    "@capacitor/core": "6.1.1",
+    "@capacitor/browser": "^6.0.1",
+    "@capacitor/core": "^6.1.1",
+    "@capacitor/filesystem": "^6.0.0",
     "@capacitor/haptics": "6.0.0",
     "@capacitor/keyboard": "6.0.1",
     "@capacitor/status-bar": "6.0.0",
@@ -55,7 +57,7 @@
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .ts,.tsx src",
-    "build:android": "ionic build --prod && npx cap copy && npx cap open android"
+    "build:android": "ionic build --prod && npx cap copy && npx cap sync && npx cap open android"
   },
   "browserslist": [
     "Chrome >=79",

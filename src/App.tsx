@@ -29,13 +29,13 @@ setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/payslips" component={PayslipList} exact />
-        <Route path="/payslip/:id" component={PayslipDetail} exact />
-        <Route exact path="/">
-          <Redirect to="/payslips" />
-        </Route>
-      </IonRouterOutlet>
+        <IonRouterOutlet>
+          <Route path="/payslips" component={PayslipList} exact />
+          <Route path="/payslip/:id" component={PayslipDetail} exact />
+          <Route exact path="/">
+            <Redirect to="/payslips" />
+          </Route>
+        </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
 );

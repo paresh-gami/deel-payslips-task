@@ -11,6 +11,8 @@ import {
 } from "@ionic/react";
 import { RouteComponentProps } from "react-router-dom";
 import { mockPayslips } from "../../data/mockPayslips";
+import DownloadFileComponent from "../../components/DownloadFileComponent";
+import MainContainer from "../../components/MainContainer/MainContainer";
 
 const PayslipDetail: React.FC<RouteComponentProps<{ id: string }>> = ({
   match,
@@ -45,13 +47,17 @@ const PayslipDetail: React.FC<RouteComponentProps<{ id: string }>> = ({
           <IonTitle>Payslip Detail</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
-        <IonLabel>
-          <h2>ID: {payslip.id}</h2>
-          <p>From: {payslip.fromDate}</p>
-          <p>To: {payslip.toDate}</p>
-          <p>File Name: {payslip.file.name}</p>
-        </IonLabel>
+      <IonContent className="ion-padding">
+        <MainContainer>
+          <IonLabel>
+            <h2>ID: {payslip.id}</h2>
+            <p>From: {payslip.fromDate}</p>
+            <p>To: {payslip.toDate}</p>
+            <p>File Name: {payslip.file.path}</p>
+
+            <DownloadFileComponent fileLink={payslip.file} />
+          </IonLabel>
+        </MainContainer>
       </IonContent>
     </IonPage>
   );
