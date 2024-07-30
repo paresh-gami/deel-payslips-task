@@ -4,7 +4,7 @@ import { Capacitor, HttpResponse } from "@capacitor/core";
 import { CapacitorHttp } from "@capacitor/core";
 import { IonButton, IonIcon } from "@ionic/react";
 import { showToast } from "../utils/toast";
-import { downloadOutline, fileTrayFull, heart } from 'ionicons/icons';
+import { fileTrayFull } from 'ionicons/icons';
 import MainContainer from "./MainContainer/MainContainer";
 
 interface FileLink {
@@ -15,6 +15,19 @@ interface FileLink {
 interface DownloadFileComponentProps {
   fileLink: FileLink;
 }
+
+const checkAndRequestPermissions = async () => {
+  const permissions = await Filesystem.checkPermissions();
+  console.log(permissions);
+  if (permissions.publicStorage !== 'granted') {
+    const request = await Filesystem.requestPermissions();
+    if (request.publicStorage !== 'granted') {
+      showToast({ message: "Permission to access storage is required." });
+      return false;
+    }
+  }
+  return true;
+};
 
 const downloadFile = async (path: string, mimeType: string) => {
   try {
@@ -33,6 +46,9 @@ const downloadFile = async (path: string, mimeType: string) => {
       URL.revokeObjectURL(urlObject);
       showToast({ message: `File ${path} downloaded and saved successfully.` });
     } else {
+      const hasPermissions = await checkAndRequestPermissions();
+      if (!hasPermissions) return;
+
       const options = {
         method: "GET",
         url: url,
@@ -53,11 +69,7 @@ const downloadFile = async (path: string, mimeType: string) => {
           directory: Directory.Documents,
           recursive: true,
         });
-
-        console.log(`File ${path} downloaded and saved successfully.`);
-        showToast({
-          message: `File ${path} downloaded and saved successfully.`,
-        });
+        showToast({ message: `File ${path} downloaded and saved successfully.` });
       };
       reader.readAsDataURL(blob);
     }
